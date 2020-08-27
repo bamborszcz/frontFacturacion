@@ -1,0 +1,13 @@
+.toolBar {
+margin-left: 5%;
+display: flex;
+}
+
+.example-button-row {
+  margin-left: 10%;
+}
+
+.example-button-row button {
+  margin-left: 5%;
+
+}
