@@ -1,0 +1,62 @@
+<mat-card class="example-card">
+
+
+  <div class="outPuts">
+    <h1>Agregar Producto</h1>
+  </div>
+  <form class="example-form">
+
+    <table class="example-full-width" cellspacing="0">
+      <div class="inputs">
+        <mat-form-field class="example-full-width">
+        <mat-label>Nombre Del Producto</mat-label>
+        <input matInput>
+      </mat-form-field>
+      </div>
+      <div class="inputs">
+        <mat-form-field >
+          <mat-label>Cantidad</mat-label>
+          <input matInput type="number" class="example-right-align">
+        </mat-form-field>
+      </div>
+
+      </table>
+
+  </form>
+
+   <div class="example-button-row outPuts2">
+        <button mat-raised-button color="primary">Cargar Venta</button>
+        </div>
+  </mat-card>
+
+  <mat-card class="example-card2">
+    <div class="guardarVenta">
+      <div class="total">
+      <h1>$ Total: 0.0</h1>
+    </div>
+    <div class="example-button-row outPuts3">
+      <button mat-raised-button color="primary">Guardar Ventas</button>
+      </div>
+    </div>
+
+      <mat-grid-list cols="5" rowHeight="50px" class="grid" >
+    <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
+
+      <h3>{{tile.text}}</h3>
+    </mat-grid-tile>
+    <mat-grid-tile
+        *ngFor="let tile of tiles2"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
+
+      <h3 *ngIf="this.text(tile.text)">{{tile.text}}</h3>
+
+      <button mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  </mat-card>

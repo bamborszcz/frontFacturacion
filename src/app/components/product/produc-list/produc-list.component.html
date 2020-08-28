@@ -1,0 +1,32 @@
+<mat-card class="example-card">
+
+  <div>
+    <h1>Productos</h1>
+  </div>
+  <div class="example-button-row outPuts2">
+    <button (click)="navAgregarProducto()" mat-raised-button color="primary">Guardar</button>
+    </div>
+
+    <mat-grid-list cols="5" rowHeight="50px" class="grid" >
+  <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+
+    <h3>{{tile.text}}</h3>
+  </mat-grid-tile>
+  <mat-grid-tile
+      *ngFor="let tile of tiles2"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+
+    <h3 *ngIf="this.text(tile.text)">{{tile.text}}</h3>
+    <button mat-raised-button color="accent" *ngIf="tile.editar">{{tile.text}}</button>
+    <button mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
+  </mat-grid-tile>
+</mat-grid-list>
+
+  </mat-card>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-head-buttons',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  public navVenta (): void{
+    this.router.navigate(['/venta']);
+  }
+
+  public navListaProductos (): void{
+    this.router.navigate(['/lista-de-productos']);
+  }
+
+  public navVentasRealizadas (): void{
+    this.router.navigate(['/ventas-realizadas']);
+  }
 }
