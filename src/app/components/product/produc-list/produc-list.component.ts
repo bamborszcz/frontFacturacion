@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/services/produdc.service';
 
 
 export interface Tile {
@@ -31,25 +32,18 @@ export class ProducListComponent implements OnInit {
 
   tiles2: Tile[] = [
   ];
-  constructor( private router: Router) {
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: 'Editar', cols: 1, rows: 1, color: '#ffffff', editar: true, eliminar: false});
-    this.tiles2.push({text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: true});
+  constructor( private router: Router, public productService: ProductService) {
 
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: 'Editar', cols: 1, rows: 1, color: '#ffffff', editar: true, eliminar: false});
-    this.tiles2.push({text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: true});
 
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: false});
-    this.tiles2.push({text: 'Editar', cols: 1, rows: 1, color: '#ffffff', editar: true, eliminar: false});
-    this.tiles2.push({text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', editar: false, eliminar: true});
+this.productService.getAllProducts().subscribe(
+  data => {
+    console.log(data);
+    data.forEach(product => {
+       productService.setTile(product);
+    });
 
+  }
+);
   }
 
   ngOnInit(): void {

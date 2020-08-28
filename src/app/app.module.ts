@@ -21,7 +21,9 @@ import { ProducListComponent } from './components/product/produc-list/produc-lis
 import { ProductSellComponent } from './components/product/product-sell/product-sell.component';
 import { SalesComponent } from './components/product/sales/sales.component';
 
+import {  ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,8 @@ import { SalesComponent } from './components/product/sales/sales.component';
     SalesComponent
   ],
   imports: [
+    HttpClientModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatListModule,
     MatCardModule,

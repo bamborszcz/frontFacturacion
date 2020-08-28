@@ -17,7 +17,7 @@
     <h3>{{tile.text}}</h3>
   </mat-grid-tile>
   <mat-grid-tile
-      *ngFor="let tile of tiles2"
+      *ngFor="let tile of productService.getTile()"
       [colspan]="tile.cols"
       [rowspan]="tile.rows"
       [style.background]="tile.color">

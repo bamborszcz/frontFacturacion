@@ -4,19 +4,20 @@
 <div class="outPuts">
   <h1>Agregar Producto</h1>
 </div>
-<form class="example-form">
+<form class="example-form" [formGroup]="registerForm">
 
   <table class="example-full-width" cellspacing="0">
     <div class="inputs">
       <mat-form-field class="example-full-width">
       <mat-label>Nombre Del Producto</mat-label>
-      <input matInput>
+      <input matInput
+      formControlName="name">
     </mat-form-field>
     </div>
     <div class="inputs">
       <mat-form-field >
         <mat-label>Precio</mat-label>
-        <input matInput type="number" class="example-right-align">
+        <input matInput type="number" class="example-right-align" formControlName="price">
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
@@ -27,7 +28,7 @@
 </form>
 
  <div class="example-button-row outPuts2">
-      <button mat-raised-button color="primary">Guardar</button>
+      <button (click)="saveProduct()" mat-raised-button color="primary">Guardar</button>
       <button (click)="navListaProducto()" mat-raised-button color="accent">Ver Todos</button>
       </div>
 </mat-card>
