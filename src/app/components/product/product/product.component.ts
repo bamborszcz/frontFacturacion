@@ -12,12 +12,6 @@ export class ProductComponent implements OnInit {
 
   constructor(private router: Router, private formBuilder: FormBuilder, public productService: ProductService) { }
 
- /* registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
-    id: null,
-    name: [''],
-    price: [],
-    quantity: []
-    });*/
   ngOnInit(): void {
   }
 
@@ -26,15 +20,24 @@ export class ProductComponent implements OnInit {
   }
 
   public saveProduct() {
-    //console.log(this.registerForm.value);
-    console.log(this.productService.getRegisterForm().value);
 
-
-    this.productService.loadProduct(this.productService.getRegisterForm().value).toPromise().then((data: any) => {
+    if(this.productService.getEditar()===false){
+       this.productService.saveProduct(this.productService.getRegisterForm().value).toPromise().then((data: any) => {
       console.log(data);
 
     });
-    this.productService.setRegisterForm('',null); // limpio el formulario despues de usarlo
+
+
+    } else if (this.productService.getEditar()===true) {
+      this.productService.editProduct(this.productService.getRegisterForm().value).toPromise().then((data: any) => {
+        console.log(data);
+      });
+
+       this.router.navigate(['/lista-de-productos']);
+    }
+
+    this.productService.setRegisterForm(null,'',null); // limpio el formulario despues de usarlo
+
 
   }
 }
