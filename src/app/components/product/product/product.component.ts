@@ -10,14 +10,14 @@ import { ProductService } from 'src/app/services/produdc.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private productService: ProductService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, public productService: ProductService) { }
 
-  registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
+ /* registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
     id: null,
     name: [''],
     price: [],
     quantity: []
-    });
+    });*/
   ngOnInit(): void {
   }
 
@@ -26,19 +26,15 @@ export class ProductComponent implements OnInit {
   }
 
   public saveProduct() {
-    console.log(this.registerForm.value);
+    //console.log(this.registerForm.value);
+    console.log(this.productService.getRegisterForm().value);
 
 
-    this.productService.loadProduct(this.registerForm.value).toPromise().then((data: any) => {
+    this.productService.loadProduct(this.productService.getRegisterForm().value).toPromise().then((data: any) => {
       console.log(data);
 
     });
-    this.registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
-      id: null,
-      name: [''],
-      price: [],
-      quantity: []
-      }); // limpio el formulario despues de usarlo
+    this.productService.setRegisterForm('',null); // limpio el formulario despues de usarlo
 
   }
 }
