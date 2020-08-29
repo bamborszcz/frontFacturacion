@@ -58,9 +58,7 @@ export class ProductSellComponent implements OnInit {
     return  active;
   }
 
-  public loadProduct () {
-    //this.productService.loadProduct(this.registerForm.value);
-    console.log(this.productService.loadProduct(this.registerForm.value));
+  public loadProduct(): void {
 
    this.tiles2.push({text: this.registerForm.value.name, cols: 1, rows: 1, color: '#ffffff', eliminar: false});
     this.tiles2.push({text: this.registerForm.value.code, cols: 1, rows: 1, color: '#ffffff', eliminar: false});

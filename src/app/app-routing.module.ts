@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'venta', component: ProductSellComponent // llama al componente empresa
   },
   {
-    path: 'agregar-producto', component: ProductComponent // llama al componente empresa
+    path: 'guardar-producto', component: ProductComponent // llama al componente empresa
   },
   {
     path: 'lista-de-productos', component: ProducListComponent // llama al componente empresa

@@ -23,8 +23,9 @@ export class ProductService {
 
   private color: string;
   private buttonName: string;
+  private editar: boolean = false;
 
-  tiles: Tile[] = [];
+  private tiles: Tile[] = [];
   constructor(private http: HttpClient, private formBuilder: FormBuilder) {
 
    }
@@ -34,15 +35,30 @@ export class ProductService {
     price: [],
     quantity: []
     });
-  public loadProduct(product: ProductUrl): Observable<any>{
+  public saveProduct(product: ProductUrl): Observable<any>{
 
    return this.http.post<ProductUrl>('http://127.0.0.1:8080/new', {// antes debo pasarle el capcha por parametro, la variable es "g-recaptcha-response"
-    id: product.id,
+    id: product.id, // siempre se setea en null para guardar e autoincrementar en la bbdd
     name: product.name,
     price: product.price,
     quantity: product.quantity
     });
    }
+
+   public editProduct(product: ProductUrl): Observable<any>{
+
+    return this.http.put<ProductUrl>('http://127.0.0.1:8080/'+product.id+'/edit', {// antes debo pasarle el capcha por parametro, la variable es "g-recaptcha-response"
+     id: product.id, // id del producto distinto de null
+     name: product.name,
+     price: product.price,
+     quantity: product.quantity
+     });
+    }
+
+    public deleteProduct(id: number): Observable<any>{
+
+      return this.http.delete<ProductUrl>('http://127.0.0.1:8080/'+id+'/delete');
+      }
 
    public getAllProducts(): Observable<any> {
     this.tiles = [];
@@ -59,21 +75,21 @@ export class ProductService {
      return this.tiles;
    }
 
-   public setTile(product: ProductUrl){
+   public setTile(product: ProductUrl){ // editar y eliminar guardan el id del producto para editarlo o eliminarlo
     this.tiles.push({id:null,text: product.name, cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
     this.tiles.push({id:null,text: product.id.toString(), cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
     this.tiles.push({id:null,text: product.price.toString(), cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
     this.tiles.push({id:product.id,text: 'Editar', cols: 1, rows: 1, color: '#ffffff',editar: true, eliminar: false});
-    this.tiles.push({id:null,text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff',editar: false, eliminar: true});
+    this.tiles.push({id:product.id,text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff',editar: false, eliminar: true});
   }
 
   public getRegisterForm(): FormGroup{
  return this.registerForm;
   }
 
-  public setRegisterForm(name: string, price: number): void{
+  public setRegisterForm(id: number,name: string, price: number): void{
     this.registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
-      id: null,
+      id: [id],
       name: [name],
       price: [price],
       quantity: []
@@ -94,5 +110,13 @@ export class ProductService {
 
     public getButtonNamer(): string{
       return this.buttonName;
+    }
+
+    public setEditar(editar: boolean): void {
+      this.editar = editar;
+    }
+
+    public getEditar(): boolean {
+      return this.editar;
     }
 }

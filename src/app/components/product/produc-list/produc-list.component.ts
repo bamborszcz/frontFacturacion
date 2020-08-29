@@ -30,21 +30,17 @@ export class ProducListComponent implements OnInit {
     {text: 'Eliminar', cols: 1, rows: 1, color: '#d0d3d4', editar: false, eliminar: false},
   ];
 
-  tiles2: Tile[] = [
-  ];
   constructor( private router: Router, public productService: ProductService) {
 
 
 this.productService.getAllProducts().subscribe(
   data => {
-    console.log(data);
     data.forEach(product => {
        productService.setTile(product);
        console.log(product);
 
     });
-
-  }
+    }
 );
   }
 
@@ -63,14 +59,17 @@ this.productService.getAllProducts().subscribe(
     return  active;
   }
 
-  public navAgregarProducto (): void{
-    this.router.navigate(['/agregar-producto']);
+  public navGuardarProducto (): void{
+    this.router.navigate(['/guardar-producto']);
+    this.productService.setEditar(false);
     this.productService.setColor('primary');
     this.productService.setButtonName('Guardar');
+    this.productService.setRegisterForm(null,'', null); // resetea el formulario
 
   }
   public navEditarProducto (id: number): void{
-    this.router.navigate(['/agregar-producto']);
+    this.router.navigate(['/guardar-producto']);
+    this.productService.setEditar(true);
     console.log(id);
     this.productService.setButtonName("Editar");
     this.productService.setColor("accent");
@@ -78,8 +77,17 @@ this.productService.getAllProducts().subscribe(
       data => {
         console.log(data);
 
-        this.productService.setRegisterForm(data.name, data.price);
+        this.productService.setRegisterForm(id,data.name, data.price);
 
         });
+  }
+
+  public deleteProduct(id: number): void{
+    console.log(id);
+
+    this.productService.deleteProduct(id).subscribe( data => {
+      console.log(data);
+      window.location.reload();
+      });
   }
 }
