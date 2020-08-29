@@ -40,6 +40,8 @@ this.productService.getAllProducts().subscribe(
     console.log(data);
     data.forEach(product => {
        productService.setTile(product);
+       console.log(product);
+
     });
 
   }
@@ -63,5 +65,21 @@ this.productService.getAllProducts().subscribe(
 
   public navAgregarProducto (): void{
     this.router.navigate(['/agregar-producto']);
+    this.productService.setColor('primary');
+    this.productService.setButtonName('Guardar');
+
+  }
+  public navEditarProducto (id: number): void{
+    this.router.navigate(['/agregar-producto']);
+    console.log(id);
+    this.productService.setButtonName("Editar");
+    this.productService.setColor("accent");
+    this.productService.getProductsByID(id).subscribe(
+      data => {
+        console.log(data);
+
+        this.productService.setRegisterForm(data.name, data.price);
+
+        });
   }
 }

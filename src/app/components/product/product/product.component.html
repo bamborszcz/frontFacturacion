@@ -2,9 +2,9 @@
 
 
 <div class="outPuts">
-  <h1>Agregar Producto</h1>
+  <h1>{{productService.getButtonNamer()}} Producto</h1>
 </div>
-<form class="example-form" [formGroup]="registerForm">
+<form class="example-form" [formGroup]="productService.getRegisterForm()">
 
   <table class="example-full-width" cellspacing="0">
     <div class="inputs">
@@ -28,7 +28,7 @@
 </form>
 
  <div class="example-button-row outPuts2">
-      <button (click)="saveProduct()" mat-raised-button color="primary">Guardar</button>
+      <button (click)="saveProduct()" mat-raised-button [color]="productService.getColor()">{{productService.getButtonNamer()}}</button>
       <button (click)="navListaProducto()" mat-raised-button color="accent">Ver Todos</button>
       </div>
 </mat-card>
