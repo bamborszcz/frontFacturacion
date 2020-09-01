@@ -24,6 +24,8 @@ import { SalesComponent } from './components/product/sales/sales.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { IngresoComponent } from './components/usuarios/ingreso/ingreso.component';
+import { RegistroComponent } from './components/usuarios/registro/registro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ProductComponent,
     ProducListComponent,
     ProductSellComponent,
-    SalesComponent
+    SalesComponent,
+    IngresoComponent,
+    RegistroComponent
   ],
   imports: [
     HttpClientModule,

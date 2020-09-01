@@ -1,0 +1,121 @@
+div {
+  margin-top: 2.5%;
+  margin-left: 20%;
+}
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+   margin-left: 20%;
+   margin-top: 2.5%;
+
+}
+
+.example-full-width {
+
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.example-button-row {
+  margin-top: 5%;
+  margin-left: 25%;
+}
+
+.example-button-row button {
+  margin-left: 2.5%;
+
+}
+
+.example-card {
+  margin-top: 5%;
+  margin-left: 20%;
+  max-width: 60%;
+}
+.inputs {
+   width: 75%;
+ }
+
+ .outPuts{
+  width: 25%;
+  margin-left: 5%;
+ }
+
+ .outPuts h1{
+  width: 25%;
+  font-weight: 500;
+  font-size: 2rem;
+ }
+
+ .outPuts2 {
+  width: 100%;
+  margin-left: 32.5%;
+
+ }
+
+ .example-card2 {
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 90%;
+
+}
+
+.grid {
+  max-width: 92.5%;
+  margin-left: 5%;
+  margin-top: 2%;
+
+}
+
+h3 {
+  margin-top: 7.5%;
+}
+
+.guardarVenta{
+  display: flex;
+
+  width: 90%;
+  margin-left: 5%;
+}
+
+.total{
+width: 30%;
+margin-left: 5%;
+margin-top: 5%;
+
+}
+
+.outPuts3 {
+  width: 15%;
+  margin-left: 50%;
+ }
+
+ input {
+   width: 50%;
+ }
+
+ button {
+   width: 40%;
+   font-size: large;
+ }

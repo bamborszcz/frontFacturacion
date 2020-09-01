@@ -24,4 +24,12 @@ export class HeadButtonsComponent implements OnInit {
   public navVentasRealizadas (): void{
     this.router.navigate(['/ventas-realizadas']);
   }
+
+  public navRegistro (): void{
+    this.router.navigate(['/registro']);
+  }
+
+  public navIngreso (): void{
+    this.router.navigate(['/ingreso']);
+  }
 }

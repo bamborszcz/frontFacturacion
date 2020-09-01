@@ -1,13 +1,29 @@
-
-  <mat-toolbar color="primary">
-    <div class="toolBar">
-      <div>
-        <span>Punto De Venta</span>
-      </div>
+<mat-toolbar color="primary">
+  <div class="toolBar">
+    <div>
+      <span>Punto De Venta</span>
+    </div>
     <div class="example-button-row">
-      <button (click)="navVenta()" mat-raised-button color="primary">Vender</button>
-      <button (click)="navListaProductos()" mat-raised-button color="primary">Productos</button>
-      <button (click)="navVentasRealizadas()" mat-raised-button color="primary">Ventas</button>
+      <div>
+        <button (click)="navVenta()" mat-raised-button color="primary">
+          Vender
+        </button>
+        <button (click)="navListaProductos()" mat-raised-button color="primary">
+          Productos
+        </button>
+        <button
+          (click)="navVentasRealizadas()"
+          mat-raised-button
+          color="primary"
+        >
+          Ventas
+        </button>
+      </div>
+
+      <div class="user">
+        <button (click)="navRegistro()" mat-raised-button color="primary">Registro</button>
+        <button (click)="navIngreso()" mat-raised-button color="primary">Ingreso</button>
+      </div>
     </div>
-    </div>
-  </mat-toolbar>
+  </div>
+</mat-toolbar>
