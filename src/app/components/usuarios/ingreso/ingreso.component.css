@@ -1,7 +1,7 @@
-div {
-  margin-top: 2.5%;
-  margin-left: 20%;
-}
+  div {
+    margin-top: 2.5%;
+    margin-left: 20%;
+  }
 
 
 .example-form {
@@ -81,35 +81,11 @@ input.example-right-align {
 
 }
 
-.grid {
-  max-width: 92.5%;
-  margin-left: 5%;
-  margin-top: 2%;
-
-}
 
 h3 {
   margin-top: 7.5%;
 }
 
-.guardarVenta{
-  display: flex;
-
-  width: 90%;
-  margin-left: 5%;
-}
-
-.total{
-width: 30%;
-margin-left: 5%;
-margin-top: 5%;
-
-}
-
-.outPuts3 {
-  width: 15%;
-  margin-left: 50%;
- }
 
  input {
    width: 50%;
