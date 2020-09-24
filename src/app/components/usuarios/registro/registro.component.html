@@ -1,7 +1,7 @@
 <mat-card class="example-card">
 
   <div class="outPuts">
-    <h1>Registratate</h1>
+    <h1>Registrate</h1>
   </div>
   <form class="example-form" [formGroup]="registerForm">
 
@@ -49,6 +49,48 @@
 
 
       </div>
+
+      <div class="passwd" [formGroup]="passwdForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input  matInput spellcheck="false" [formControl]="passwdFormControl" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button
+          tabindex="-1"
+          matSuffix
+          (click)="hide = !hide"
+          >
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+          <!--<mat-hint *ngIf="!passwordInput.value">Ingrese su Contraseña</mat-hint>coloca un texto debajo-->
+          <mat-error *ngIf="passwdFormControl.hasError('required')">
+            Contraseña <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="passwd">
+      <mat-form-field class="example-full-width">
+        <mat-label>Repetir Contraseña</mat-label>
+        <input type="password"
+        matInput spellcheck="false" [formControl]="repeatPasswdFormControl"
+        [type]="hidePR ? 'password' : 'text'">
+        <button mat-icon-button
+        tabindex="-1"
+        matSuffix
+        (click)="hidePR = !hidePR"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePR">
+        <mat-icon>{{hidePR ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+        <!--<mat-hint *ngIf="!passwordRepeatInput.value">Confirme su Contraseña</mat-hint>coloca un texto debajo -->
+        <mat-error *ngIf="repeatPasswdFormControl.hasError('required')">
+          Contraseña <strong>requerida</strong>
+        </mat-error>
+        <mat-error>
+         La Contraseña <strong>no coincide</strong>
+        </mat-error>
+      </mat-form-field>
+  </div>
 
       </table>
 

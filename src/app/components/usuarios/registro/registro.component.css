@@ -73,7 +73,7 @@ h3 {
 
 
  input {
-   width: 50%;
+   width: 90%;
 
  }
 
@@ -91,3 +91,16 @@ h3 {
   width: 95%;
   margin-left: 5%;
    }
+
+  .passwd {
+    width: 95%;
+    margin-left: 5%;
+  }
+
+
+  ::ng-deep .mat-icon{
+    height: 1.5rem !important;/* para agrandar mat-icon de la passwd*/
+    width: 1.5rem !important;
+    font-size: 1.5rem !important;
+}
+

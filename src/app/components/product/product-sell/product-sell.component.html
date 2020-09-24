@@ -4,7 +4,7 @@
   <div class="outPuts">
     <h1>Agregar Producto</h1>
   </div>
-  <form class="example-form" [formGroup]="registerForm">
+  <form class="example-form" [formGroup]="productService.getRegisterForm()">
 
     <table class="example-full-width" cellspacing="0">
       <div class="inputs">
@@ -34,12 +34,18 @@
   </mat-card>
 
   <mat-card class="example-card2">
+    <div class="client">
+      <mat-form-field class="client2">
+      <mat-label>Nombre Del Cliente</mat-label>
+      <input (keyup)="onKey($event)" matInput>
+    </mat-form-field>
+    </div>
     <div class="guardarVenta">
       <div class="total">
-      <h1>$ Total: 0.0</h1>
+      <h1>$ Total: {{total}}</h1>
     </div>
     <div class="example-button-row outPuts3">
-      <button mat-raised-button color="primary">Guardar Ventas</button>
+      <button (click)="saveSale()" mat-raised-button color="primary">Guardar Ventas</button>
       </div>
     </div>
 
@@ -53,14 +59,14 @@
       <h3>{{tile.text}}</h3>
     </mat-grid-tile>
     <mat-grid-tile
-        *ngFor="let tile of tiles2"
+        *ngFor="let tile of productService.getTileVentas()"
         [colspan]="tile.cols"
         [rowspan]="tile.rows"
         [style.background]="tile.color">
 
       <h3 *ngIf="this.text(tile.text)">{{tile.text}}</h3>
 
-      <button (click)="deleteProduct()" mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
+      <button (click)="borrarProductList(tile.id)" mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
     </mat-grid-tile>
   </mat-grid-list>
   </mat-card>

@@ -27,6 +27,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IngresoComponent } from './components/usuarios/ingreso/ingreso.component';
 import { RegistroComponent } from './components/usuarios/registro/registro.component';
+import { ErrorStateMatcher } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,7 @@ import { RegistroComponent } from './components/usuarios/registro/registro.compo
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ErrorStateMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

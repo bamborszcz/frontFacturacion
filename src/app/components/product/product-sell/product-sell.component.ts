@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ProductService } from '../../../services/produdc.service';
+import { ProductService, SaleUrl } from '../../../services/produdc.service';
 
 export interface Tile {
   color: string;
@@ -17,35 +17,30 @@ export interface Tile {
 })
 export class ProductSellComponent implements OnInit {
 
+sale: SaleUrl = {
+  id: null,
+  clientName: '',
+  date: null,
+  productsSold: [],
+  total: null
+};
 
-
+total: number = 0;
   tiles: Tile[] = [
     {text: 'Nombre', cols: 1, rows: 1, color: '#d0d3d4',  eliminar: false},
-    {text: 'Codigo', cols: 1, rows: 1, color: '#d0d3d4',  eliminar: false},
+    {text: 'Cantidad', cols: 1, rows: 1, color: '#d0d3d4',  eliminar: false},
     {text: 'Precio', cols: 1, rows: 1, color: '#d0d3d4', eliminar: false},
     {text: 'Total', cols: 1, rows: 1, color: '#d0d3d4',  eliminar: false},
     {text: 'Eliminar', cols: 1, rows: 1, color: '#d0d3d4', eliminar: false},
   ];
 
-  tiles2: Tile[] = [
-  ];
-  constructor(private formBuilder: FormBuilder, private productService: ProductService) {
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: 'Total', cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', eliminar: true});
+
+  constructor( public productService: ProductService) {
 
   }
 
- registerForm = this.formBuilder.group({// deben ser igual a los de la interfaz
-  id: [],
-  name: [''],
-  price: [],
-  quantity: []
-  });
-
   ngOnInit(): void {
+
   }
 
   public text (button: string): boolean {
@@ -58,20 +53,66 @@ export class ProductSellComponent implements OnInit {
     return  active;
   }
 
-  public loadProduct(): void {
+  public loadProduct() {
+   this.productService.resetTileVentas();
+   this.sale.productsSold = [];
+this.productService.soldProduct(this.productService.getRegisterForm().value).toPromise().then((data: any) => {
 
-   this.tiles2.push({text: this.registerForm.value.name, cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: this.registerForm.value.code, cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: this.registerForm.value.price, cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: 'Total', cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tiles2.push({text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', eliminar: true});
+console.log(data);
 
+this.productService.getProductSellTotal().subscribe(data=>{
+  console.log('total'+data);
+  this.total = data;
+});
+for (let product of data) {
 
-    console.log(this.registerForm.value.name);
+this.productService.setTileVentas(product);
+this.sale.productsSold.push(product);
+}
+
+});
+
 
   }
 
-  public deleteProduct() {
-    this.tiles2.splice(0,5);
+
+
+  public borrarProductList(id: number): void {
+    this.productService.resetTileVentas();
+    this.sale.productsSold = [];
+    this.productService.deleteProductTileVentas(id).subscribe(
+      data => {
+        console.log(data);
+
+        this.productService.getProductSellTotal().subscribe(data=>{
+          console.log('total'+data);
+          this.total = data;
+        });
+
+        for (let product of data) {
+
+          this.productService.setTileVentas(product);
+          this.sale.productsSold.push(product);
+
+          }
+        console.log(data);
+
+        }
+    );
   }
+
+  onKey(event: any) { // without type info
+    this.sale.clientName = event.target.value;
+  }
+
+  public saveSale() {
+
+    this.productService.saveSale(this.sale).toPromise().then((data: any) => {
+
+      console.log(data);
+
+    });
+  }
+
+
 }

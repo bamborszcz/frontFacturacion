@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/services/produdc.service';
 
 @Component({
   selector: 'app-head-buttons',
@@ -8,13 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HeadButtonsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private prodServ: ProductService) { }
 
   ngOnInit(): void {
   }
 
   public navVenta (): void{
     this.router.navigate(['/venta']);
+    this.prodServ.resetTileVentas();
+    this.prodServ.setRegisterForm(null,'',null); // limpio el formulario despues de usarlo
+
   }
 
   public navListaProductos (): void{

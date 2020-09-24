@@ -19,8 +19,10 @@
           <mat-label>Contraseña</mat-label>
           <input matInput class="form-control"
           formControlName="quantity"
-        >
+          [type]="hidePR ? 'password' : 'text'">
+          <mat-icon  matSuffix (click)="hidePR = !hidePR">{{hidePR ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
+
       </div>
 
       </table>

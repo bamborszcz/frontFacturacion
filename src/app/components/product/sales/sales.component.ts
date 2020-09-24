@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/produdc.service';
 
 export interface Tile {
   color: string;
   cols: number;
   rows: number;
   text: string;
-
+  productos: boolean;
+  eliminar: boolean;
 }
 
 @Component({
@@ -16,38 +18,46 @@ export interface Tile {
 export class SalesComponent implements OnInit {
 
   tiles: Tile[] = [
-    {text: 'Nombre', cols: 1, rows: 1, color: '#d0d3d4'},
-    {text: 'Codigo', cols: 1, rows: 1, color: '#d0d3d4'},
-    {text: 'Precio', cols: 1, rows: 1, color: '#d0d3d4'},
-    {text: 'Total', cols: 1, rows: 1, color: '#d0d3d4'},
-    {text: 'Cantidad', cols: 1, rows: 1, color: '#d0d3d4'},
+    {text: 'Codigo', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: true},
+    {text: 'Cliente', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: true},
+    {text: 'Fecha', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: true},
+    {text: 'Total', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: true},
+    {text: 'Productos', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: false},
+    {text: 'Borrar', cols: 1, rows: 1, color: '#d0d3d4', productos: false, eliminar: false}
   ];
 
   tiles2: Tile[] = [
   ];
-  constructor() {
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: 'Total', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '200', cols: 1, rows: 1, color: '#ffffff'});
+  constructor( public prodServ: ProductService) {
 
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: 'Total', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '200', cols: 1, rows: 1, color: '#ffffff'});
-
-    this.tiles2.push({text: 'Queso', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '1', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '150', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: 'Total', cols: 1, rows: 1, color: '#ffffff'});
-    this.tiles2.push({text: '200', cols: 1, rows: 1, color: '#ffffff'});
 
   }
 
   ngOnInit(): void {
+    this.prodServ.resetTileVentasRealizadas();
+    this.prodServ.getSaleList().subscribe(data=>{
+      console.log(data);
+
+
+      for (let product of data) {
+     this.prodServ.setTileVentasRealizadas(product);
+
+        }
+    });
   }
 
 
+  borrarProductList(til: number){
+    console.log(til);
+  }
+
+  public text (button: string): boolean {
+    let active = false;
+    if (button !== 'Productos' && button !== 'Eliminar') {
+      active = true;
+    } else  {
+      active = false;
+    }
+    return  active;
+  }
 }
