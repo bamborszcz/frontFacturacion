@@ -1,0 +1,36 @@
+<mat-card class="example-card">
+
+  <div class="outPuts">
+    <h1>Ingreso</h1>
+  </div>
+  <form class="example-form" [formGroup]="registerForm">
+
+    <table class="example-full-width" cellspacing="0">
+      <div class="inputs">
+        <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <input matInput
+        formControlName="name"
+        class="form-control">
+      </mat-form-field>
+      </div>
+      <div class="inputs">
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput class="form-control"
+          formControlName="quantity"
+          [type]="hidePR ? 'password' : 'text'">
+          <mat-icon  matSuffix (click)="hidePR = !hidePR">{{hidePR ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+
+      </div>
+
+      </table>
+
+  </form>
+
+   <div class="example-button-row outPuts2">
+        <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+        </div>
+  </mat-card>
+

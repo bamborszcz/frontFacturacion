@@ -11,10 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+
 
 import { ProductComponent } from './components/product/product/product.component';
 import { ProducListComponent } from './components/product/produc-list/produc-list.component';
@@ -24,6 +25,9 @@ import { SalesComponent } from './components/product/sales/sales.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { IngresoComponent } from './components/usuarios/ingreso/ingreso.component';
+import { RegistroComponent } from './components/usuarios/registro/registro.component';
+import { ErrorStateMatcher } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ProductComponent,
     ProducListComponent,
     ProductSellComponent,
-    SalesComponent
+    SalesComponent,
+    IngresoComponent,
+    RegistroComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,7 +56,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ErrorStateMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,7 @@
 <mat-card class="example-card2">
 
-  <div class="cabecera">
-    <div class="total2">
-        <h1>Fecha: 27/08/2020</h1>
-    </div>
-     <div class="total">
-    <h1>$ Total: 0.0</h1>
-  </div>
-  </div>
 
-
-    <mat-grid-list cols="5" rowHeight="50px" class="grid" >
+    <mat-grid-list cols="6" rowHeight="50px" class="grid" >
   <mat-grid-tile
       *ngFor="let tile of tiles"
       [colspan]="tile.cols"
@@ -20,13 +11,16 @@
     <h3>{{tile.text}}</h3>
   </mat-grid-tile>
   <mat-grid-tile
-      *ngFor="let tile of tiles2"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
+        *ngFor="let tile of prodServ.getTileVentasRealizadas()"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
 
-    <h3>{{tile.text}}</h3>
+      <h3 *ngIf="this.text(tile.text)">{{tile.text}}</h3>
 
-  </mat-grid-tile>
+      <button (click)="borrarProductList(tile.id)" mat-raised-button color="accent" *ngIf="tile.productos">{{tile.text}}</button>
+
+      <button (click)="borrarProductList(tile.id)" mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
+    </mat-grid-tile>
 </mat-grid-list>
 </mat-card>

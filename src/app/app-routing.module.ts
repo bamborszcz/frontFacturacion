@@ -4,11 +4,13 @@ import { ProducListComponent } from './components/product/produc-list/produc-lis
 import { ProductComponent } from './components/product/product/product.component';
 import { ProductSellComponent } from './components/product/product-sell/product-sell.component'
 import { SalesComponent } from './components/product/sales/sales.component';
+import { RegistroComponent } from './components/usuarios/registro/registro.component';
+import { IngresoComponent } from './components/usuarios/ingreso/ingreso.component';
 
 
 const routes: Routes = [
   {
-    path:'', pathMatch: 'full', redirectTo: 'venta'
+    path:'', pathMatch: 'full', redirectTo: 'ingreso'
   },
   {
     path: 'venta', component: ProductSellComponent // llama al componente empresa
@@ -22,6 +24,12 @@ const routes: Routes = [
   {
     path: 'ventas-realizadas', component: SalesComponent // llama al componente empresa
   },
+  {
+    path: 'registro', component: RegistroComponent // llama al componente empresa
+  },
+  {
+    path: 'ingreso', component: IngresoComponent // llama al componente empresa
+  }
 ];
 
 @NgModule({

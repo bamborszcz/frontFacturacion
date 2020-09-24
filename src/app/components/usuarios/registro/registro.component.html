@@ -1,0 +1,103 @@
+<mat-card class="example-card">
+
+  <div class="outPuts">
+    <h1>Registrate</h1>
+  </div>
+  <form class="example-form" [formGroup]="registerForm">
+
+    <table class="example-full-width" cellspacing="0">
+      <div class="nomYap">
+         <div class="inputs">
+        <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput
+        [formControl]="nameFormControl">
+        <mat-error *ngIf="nameFormControl.hasError('minLength') || nameFormControl.hasError('maxLength') || !nameFormControl.hasError('required')">
+          Por favor ingrese un nombre válido!!!
+        </mat-error>
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Nombre <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <div class="inputs">
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido</mat-label>
+          <input matInput
+          [formControl]="apellidoFormControl">
+        <mat-error *ngIf="apellidoFormControl.hasError('minLength') || apellidoFormControl.hasError('maxLength') || !apellidoFormControl.hasError('required')">
+          Por favor ingrese un apellido válido!!!
+        </mat-error>
+        <mat-error *ngIf="apellidoFormControl.hasError('required')">
+          Apellido <strong>requerido</strong>
+        </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="mail">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Por favor ingrese una dirección de email válida!!!
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+      </div>
+
+      <div class="passwd" [formGroup]="passwdForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input  matInput spellcheck="false" [formControl]="passwdFormControl" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button
+          tabindex="-1"
+          matSuffix
+          (click)="hide = !hide"
+          >
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+          <!--<mat-hint *ngIf="!passwordInput.value">Ingrese su Contraseña</mat-hint>coloca un texto debajo-->
+          <mat-error *ngIf="passwdFormControl.hasError('required')">
+            Contraseña <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="passwd">
+      <mat-form-field class="example-full-width">
+        <mat-label>Repetir Contraseña</mat-label>
+        <input type="password"
+        matInput spellcheck="false" [formControl]="repeatPasswdFormControl"
+        [type]="hidePR ? 'password' : 'text'">
+        <button mat-icon-button
+        tabindex="-1"
+        matSuffix
+        (click)="hidePR = !hidePR"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePR">
+        <mat-icon>{{hidePR ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+        <!--<mat-hint *ngIf="!passwordRepeatInput.value">Confirme su Contraseña</mat-hint>coloca un texto debajo -->
+        <mat-error *ngIf="repeatPasswdFormControl.hasError('required')">
+          Contraseña <strong>requerida</strong>
+        </mat-error>
+        <mat-error>
+         La Contraseña <strong>no coincide</strong>
+        </mat-error>
+      </mat-form-field>
+  </div>
+
+      </table>
+
+  </form>
+
+   <div class="example-button-row outPuts2">
+        <button mat-raised-button color="primary" (click)="register()">Registrate</button>
+        </div>
+  </mat-card>
+
