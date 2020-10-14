@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
 
   public navListaProducto (): void{
     this.router.navigate(['/lista-de-productos']);
+
   }
 
   public saveProduct() {
@@ -33,7 +34,6 @@ export class ProductComponent implements OnInit {
         console.log(data);
       });
 
-       this.router.navigate(['/lista-de-productos']);
     }
 
     this.productService.setRegisterForm(null,'',null); // limpio el formulario despues de usarlo

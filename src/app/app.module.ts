@@ -28,6 +28,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IngresoComponent } from './components/usuarios/ingreso/ingreso.component';
 import { RegistroComponent } from './components/usuarios/registro/registro.component';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { ProductSoldComponent } from './components/product/product-sold/product-sold.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
     ProductSellComponent,
     SalesComponent,
     IngresoComponent,
-    RegistroComponent
+    RegistroComponent,
+    ProductSoldComponent
   ],
   imports: [
     HttpClientModule,

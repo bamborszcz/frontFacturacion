@@ -52,6 +52,7 @@ input.example-right-align {
   margin-top: 5%;
   margin-left: 20%;
   max-width: 60%;
+  background-color: #FAF7F7;
 }
 .inputs {
    width: 75%;

@@ -22,6 +22,7 @@ export interface Tile {
 export class ProducListComponent implements OnInit {
 
 
+
   tiles: Tile[] = [
     {text: 'Nombre', cols: 1, rows: 1, color: '#d0d3d4', editar: false, eliminar: false},
     {text: 'Codigo', cols: 1, rows: 1, color: '#d0d3d4', editar: false, eliminar: false},
@@ -34,17 +35,20 @@ export class ProducListComponent implements OnInit {
 
 
 this.productService.getAllProducts().subscribe(
+
   data => {
     data.forEach(product => {
        productService.setTile(product);
        console.log(product);
-
     });
     }
+
 );
+
   }
 
   ngOnInit(): void {
+
   }
 
 
@@ -80,6 +84,8 @@ this.productService.getAllProducts().subscribe(
         this.productService.setRegisterForm(id,data.name, data.price);
 
         });
+
+
   }
 
   public deleteProduct(id: number): void{
@@ -90,4 +96,5 @@ this.productService.getAllProducts().subscribe(
       window.location.reload();
       });
   }
+
 }

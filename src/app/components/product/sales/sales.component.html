@@ -18,9 +18,10 @@
 
       <h3 *ngIf="this.text(tile.text)">{{tile.text}}</h3>
 
-      <button (click)="borrarProductList(tile.id)" mat-raised-button color="accent" *ngIf="tile.productos">{{tile.text}}</button>
+      <button mat-raised-button color="accent" *ngIf="tile.productos">{{tile.text}}</button>
 
-      <button (click)="borrarProductList(tile.id)" mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
+      <button (click)="deleteSale(tile.id)" mat-raised-button color="warn" *ngIf="tile.eliminar">{{tile.text}}</button>
     </mat-grid-tile>
 </mat-grid-list>
 </mat-card>
+<app-product-sold></app-product-sold>

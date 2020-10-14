@@ -47,8 +47,11 @@ export class SalesComponent implements OnInit {
   }
 
 
-  borrarProductList(til: number){
-    console.log(til);
+  deleteSale(id: number){
+    this.prodServ.deleteSale(id).subscribe( data => {
+      console.log(data);
+      window.location.reload();
+      });
   }
 
   public text (button: string): boolean {

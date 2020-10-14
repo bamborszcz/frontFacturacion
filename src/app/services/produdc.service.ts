@@ -109,12 +109,17 @@ export class ProductService {
      });
     }
 
-    public deleteProduct(id: number): Observable<any>{
+    public deleteProduct(id: number): Observable<any>{// este borra el elemento de la bbdd
 
       return this.http.delete<ProductUrl>('http://127.0.0.1:8080/'+id+'/delete');
       }
 
-    public deleteProductTileVentas(id: number): Observable<any>{
+    public deleteSale(id: number): Observable<any>{// este borra el elemento de la bbdd
+
+      return this.http.delete<SaleUrl>('http://127.0.0.1:8080/sales/'+id+'/delete');
+      }
+
+    public deleteProductTileVentas(id: number): Observable<any>{// este solo remueve el elemento de la lista del back
       console.log('borrar');
      console.log(this.getTileVentas());
 
@@ -145,29 +150,29 @@ export class ProductService {
 
 
    public setTile(product: ProductUrl){ // editar y eliminar guardan el id del producto para editarlo o eliminarlo
-    this.tiles.push({id:null,text: product.name, cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
-    this.tiles.push({id:null,text: product.id.toString(), cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
-    this.tiles.push({id:null,text: product.price.toString(), cols: 1, rows: 1,editar: false, color: '#ffffff', eliminar: false});
-    this.tiles.push({id:product.id,text: 'Editar', cols: 1, rows: 1, color: '#ffffff',editar: true, eliminar: false});
-    this.tiles.push({id:product.id,text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff',editar: false, eliminar: true});
+    this.tiles.push({id:null,text: product.name, cols: 1, rows: 1,editar: false, color: '#FAF7F7', eliminar: false});
+    this.tiles.push({id:null,text: product.id.toString(), cols: 1, rows: 1,editar: false, color: '#FAF7F7', eliminar: false});
+    this.tiles.push({id:null,text: product.price.toString(), cols: 1, rows: 1,editar: false, color: '#FAF7F7', eliminar: false});
+    this.tiles.push({id:product.id,text: 'Editar', cols: 1, rows: 1, color: '#FAF7F7',editar: true, eliminar: false});
+    this.tiles.push({id:product.id,text: 'Eliminar', cols: 1, rows: 1, color: '#FAF7F7',editar: false, eliminar: true});
   }
 
   public setTileVentas(product: ProductUrl) {
-    this.tilesVentas.push({id:product.id,text: product.name, cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tilesVentas.push({id:product.id,text: product.quantity.toString(), cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tilesVentas.push({id:product.id,text: product.price.toString(), cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tilesVentas.push({id:product.id,text: product.total.toString(), cols: 1, rows: 1, color: '#ffffff', eliminar: false});
-    this.tilesVentas.push({id:product.id,text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', eliminar: true});
+    this.tilesVentas.push({id:product.id,text: product.name, cols: 1, rows: 1, color: '#FAF7F7', eliminar: false});
+    this.tilesVentas.push({id:product.id,text: product.quantity.toString(), cols: 1, rows: 1, color: '#FAF7F7', eliminar: false});
+    this.tilesVentas.push({id:product.id,text: product.price.toString(), cols: 1, rows: 1, color: '#FAF7F7', eliminar: false});
+    this.tilesVentas.push({id:product.id,text: product.total.toString(), cols: 1, rows: 1, color: '#FAF7F7', eliminar: false});
+    this.tilesVentas.push({id:product.id,text: 'Eliminar', cols: 1, rows: 1, color: '#FAF7F7', eliminar: true});
 
   }
 
   public setTileVentasRealizadas(sales: SaleUrl) {
-    this.tileVentasRealizadas.push({id: sales.id, text: sales.id.toString(), cols: 1, rows: 1, color: '#ffffff', productos: false, eliminar: false});
-    this.tileVentasRealizadas.push({id: sales.id, text: sales.clientName, cols: 1, rows: 1, color: '#ffffff', productos: false, eliminar: false});
-    this.tileVentasRealizadas.push({id: sales.id, text: sales.date.toString(), cols: 1, rows: 1, color: '#ffffff', productos: false, eliminar: false});
-    this.tileVentasRealizadas.push({id: sales.id, text: sales.total.toString(), cols: 1, rows: 1, color: '#ffffff', productos: false, eliminar: false});
-    this.tileVentasRealizadas.push({id: sales.id, text: 'Productos', cols: 1, rows: 1, color: '#ffffff', productos: true, eliminar: false});
-    this.tileVentasRealizadas.push({id: sales.id, text: 'Eliminar', cols: 1, rows: 1, color: '#ffffff', productos: false, eliminar: true});
+    this.tileVentasRealizadas.push({id: sales.id, text: sales.id.toString(), cols: 1, rows: 1, color: '#FAF7F7', productos: false, eliminar: false});
+    this.tileVentasRealizadas.push({id: sales.id, text: sales.clientName, cols: 1, rows: 1, color: '#FAF7F7', productos: false, eliminar: false});
+    this.tileVentasRealizadas.push({id: sales.id, text: sales.date.toString(), cols: 1, rows: 1, color: '#FAF7F7', productos: false, eliminar: false});
+    this.tileVentasRealizadas.push({id: sales.id, text: sales.total.toString(), cols: 1, rows: 1, color: '#FAF7F7', productos: false, eliminar: false});
+    this.tileVentasRealizadas.push({id: sales.id, text: 'Productos', cols: 1, rows: 1, color: '#FAF7F7', productos: true, eliminar: false});
+    this.tileVentasRealizadas.push({id: sales.id, text: 'Eliminar', cols: 1, rows: 1, color: '#FAF7F7', productos: false, eliminar: true});
   }
 
   public getTile(){

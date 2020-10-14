@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProductService, SaleUrl } from '../../../services/produdc.service';
 
 export interface Tile {
@@ -35,7 +36,7 @@ total: number = 0;
   ];
 
 
-  constructor( public productService: ProductService) {
+  constructor( public productService: ProductService, private router: Router) {
 
   }
 
@@ -112,7 +113,7 @@ this.sale.productsSold.push(product);
       console.log(data);
 
     });
-  }
+   }
 
 
 }
